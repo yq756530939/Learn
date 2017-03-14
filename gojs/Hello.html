@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="./lib/release/go-debug.js"></script>
+</head>
+<body>
+<div id="myDiagramDiv" style="width:400px; height:150px;"></div>
+<script type="text/javascript">
+	// var diagram = new go.Diagram("myDiagramDiv");
+	var $ = go.GraphObject.make;
+	var myDiagram = $(go.Diagram, "myDiagramDiv", {
+		initialContentAlignment: go.Spot.Center,
+		"undoManager.isEnabled": true
+	});
+
+	var myModel = $(go.Model);
+	myModel.nodeDataArray = [{
+		key: "Alpha"
+	}, {
+		key: 'Beta'
+	}, {
+		key: 'Gamma'
+	}];
+
+	myDiagram.model = myModel;
+	myDiagram.nodeTemplate = $(go.Node, $(go.TextBlock, new go.Binding("text", "key")));
+</script>
+</body>
+</html>
